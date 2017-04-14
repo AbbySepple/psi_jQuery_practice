@@ -15,7 +15,6 @@ $(document).ready(onReady);
 function onReady(){
   //click listener to button:
   $('.change-highlight').on('click', highlightASquare)
-
   //call to put starting squares on DOM
   appendSquaresToDom(numberOfSquares);
 }
@@ -23,8 +22,23 @@ function onReady(){
 function highlightASquare(){
   //This variable stores an array of the elements with the 'square' class
   var arrayOfSquares = $('.square');
-
+// arrayOfSquares.addClass('highlight');
+// console.log($('.container').children());
+if ($('.container').children().hasClass('highlight')) {//if one checking if any are highlighted
+  for (var i=0; i<arrayOfSquares.length; i++) {//for running through array
+    if ($(arrayOfSquares[i]).hasClass('highlight')){//if two if highlighted
+      $(arrayOfSquares[i]).removeClass('highlight'); //remove highlighted
+    if (i === arrayOfSquares.length-1) {//end if two start if three if last is highlighted
+      $(arrayOfSquares[0]).addClass('highlight'); //highlight first one
+    } else {
+      $(arrayOfSquares[i += 1]).addClass('highlight');//all above is in if one is highlighted
+    }return;
+  } //end if four
+}//end forloop
 }
+  else {$(arrayOfSquares[0]).addClass('highlight');}
+}//end if one
+//end highlightASquare function
 
 
 //You don't need to change this function:
